@@ -1,5 +1,14 @@
+from sys import stdin
+from time import sleep
 import RPIO
 from RPLCD import CharLCD
+
+
+def each_cons(x, size):
+        return [x[i:i+size] for i in range(len(x)-size+1)]
+
+
+input_data = stdin.read()
 
 pins_out = [11, 13, 15, 16]
 pin_e = 8
@@ -19,4 +28,10 @@ lcd = CharLCD(
     dotsize=8
 )
 
-lcd.write_string('Hello world')
+
+while True:
+    for x in each_cons(input_data, 20):
+        lcd.clear()
+        lcd.home()
+        lcd.write_string(filter(lambda x: x != '\n', x))
+        sleep(0.2)
