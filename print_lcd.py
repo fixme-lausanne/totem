@@ -4,10 +4,7 @@ import RPIO
 from RPLCD import CharLCD
 
 
-def each_cons(x, size):
-        return [x[i:i+size] for i in range(len(x)-size+1)]
-
-
+refresh_rate = 0.2 # seconds
 input_data = stdin.read()
 
 pins_out = [11, 13, 15, 16]
@@ -16,6 +13,7 @@ pin_rs = 10
 pin_rw = 3
 nb_columns=20
 nb_rows=4
+
 
 lcd = CharLCD(
     pin_rs=pin_rs,
@@ -29,9 +27,13 @@ lcd = CharLCD(
 )
 
 
+
+def each_cons(x, size):
+    return [x[i:i+size] for i in range(len(x)-size+1)]
+
 while True:
     for x in each_cons(input_data, 20):
         lcd.clear()
         lcd.home()
-        lcd.write_string(filter(lambda x: x != '\n', x))
-        sleep(0.2)
+        lcd.write_string(' '.join(x.split()))
+        sleep(refresh_rate)
