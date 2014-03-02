@@ -1,5 +1,6 @@
 from threading import Thread
 import os
+import json
 
 INPUT_BUFFER = 4200 # 30 tweets
 
@@ -8,20 +9,21 @@ class Dispatcher:
         self._input = os.open(fifo_input, os.O_RDONLY | os.O_NONBLOCK)
         self._queue = []
 
-    def read(self): 
-        return Thread(target=dis.read).start()
-        
+    def read(self):
+        return Thread(target=self._read).start()
+
     def _read(self):
         while True:
             try:
-                buffer = os.read(self._input, INPUT_BUFFER)            
+                buffer = os.read(self._input, INPUT_BUFFER)
                 if buffer:
-                    dis.insert(buffer)
-                    print(buffer)
+                    data = json.loads(buffer.decode('utf-8'))
+                    self._insert(data)
+                    print(data)
             except BlockingIOError:
                 pass
 
-    def insert(self, elem):
+    def _insert(self, elem):
         self._queue.append(elem)
 
 
