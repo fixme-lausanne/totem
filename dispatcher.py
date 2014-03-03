@@ -26,17 +26,17 @@ class Dispatcher:
     def _insert(self, elem):
         self._queue.append(elem)
 
-    def dispatch(self, output, filter_callback=None):
+    def dispatch(self, output, predicate=None):
         Thread(
-            target=self._dispatch(output, filter_callback)
+            target=self._dispatch(output, predicate)
         ).start()
 
-    def _dispatch(self, output, filter_callback):
+    def _dispatch(self, output, predicate):
         value = self._queue
         last_value = []
         while True:
-            if filter_callback:
-                value = list(filter_callback(self._queue))
+            if predicate:
+                value = list(self._filter_by_predicate(self._queue, predicate))
 
             if last_value != value:
                 output(value)
@@ -45,3 +45,8 @@ class Dispatcher:
                     print("\t", x)
                 print("\n")
             last_value = value
+
+    def _filter_by_predicate(self, data, predicate):
+        return filter(
+            predicate, data
+        )
