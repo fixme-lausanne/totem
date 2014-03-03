@@ -26,16 +26,22 @@ class Dispatcher:
     def _insert(self, elem):
         self._queue.append(elem)
 
-    def dispatch(self, filter_callback=None):
-        if filter_callback:
-            value = filter(filter_callback, self._queue)
-            print(value)
+    def dispatch(self, output, filter_callback=None):
+        Thread(
+            target=self._dispatch(output, filter_callback)
+        ).start()
 
-        Thread(target=self._dispatch).start()
-
-    def _dispatch(self):
+    def _dispatch(self, output, filter_callback):
+        value = self._queue
         last_value = []
         while True:
-            if last_value != self._queue:
-                print(self._queue)
-            last_value = self._queue
+            if filter_callback:
+                value = list(filter_callback(self._queue))
+
+            if last_value != value:
+                output(value)
+                print("\nFiltered values:")
+                for x in value:
+                    print("\t", x)
+                print("\n")
+            last_value = value
