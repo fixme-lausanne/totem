@@ -12,41 +12,47 @@ yargs = yargs
   .default('lausanne', false)
   .default('help', false)
   .usage("Get tweets with filters.\nUsage: $0")
-  .example('$0 --track hack --lausanne', 'Get every tweets from Lausanne OR containing the word "hack"')
-  .example('$0 --username Binary_Brain', 'Get every tweets sent by @Binary_Brain')
+  .example('$0 --track hack --lausanne', 'Get every tweets from Lausanne AND containing the word "hack"')
+  .example('$0 --username Binary_Brain --tags="Javascript, Web Dev"', 'Get every tweets sent by @Binary_Brain')
   
   .boolean('h')
   .options('h', {
     alias: 'help',
-    describe: 'Show this help'
+    describe: 'Show this help.'
   })
   
   .boolean('l')
   .options('l', {
     alias: 'lausanne',
-    describe: 'Select tweets from Lausanne'
+    describe: 'Select tweets from Lausanne.'
   })
   
   .string('t')
   .options('t', {
     alias: 'track',
-    describe: 'Select tweets containing the given keyword'
+    describe: 'Select tweets containing the given keyword.'
   })
   
   .options('u', {
     alias: 'username',
-    describe: 'Select tweets from username'
+    describe: 'Select tweets from username.'
   })
   
   .options('i', {
     alias: 'userid',
-    describe: 'Select tweets from userid'
+    describe: 'Select tweets from userid.'
   })
   
   .boolean('v')
   .options('v', {
     alias: 'verbose',
-    describe: 'Verbose mode'
+    describe: 'Verbose mode.'
+  })
+  
+  .string('T')
+  .options('T', {
+    alias: 'tags',
+    describe: 'Additional tags for the JSON separated by a comma.'
   })
   
   .check(function (argv) {
@@ -54,7 +60,6 @@ yargs = yargs
       return false
     }
   })
-  
   
 var argv = yargs.argv;
 
@@ -84,6 +89,20 @@ var lausanneGeoloc = argv.lausanne
 
 if(lausanneGeoloc) {
   filterOptions.locations = loc.join(',')
+}
+
+// Additional tags
+var additionalTags = []
+
+if(argv.tags) {
+  additionalTags = additionalTags.concat(argv.tags.trim().split(/\s*[,;\/]\s*/))
+}
+
+if (filterOptions.track) {
+  additionalTags.push(filterOptions.track)
+}
+if (filterOptions.follow) {
+  additionalTags.push(filterOptions.follow)
 }
 
 // Track
@@ -144,21 +163,33 @@ function getStream(options) {
     console.error("ERR:", "no option given to getStream")
     process.exit(-2)
   }
-  
+    
+  if(options.track && options.follow) {
+    delete options.track
+  }
+
   twit.stream('statuses/filter', options, function (stream) {
     stream.on('data', function (data) {
       if(data.text === undefined || data.user === undefined || data.user.screen_name === undefined) {
         return;
       }
       
+      var tweet = data.text
+      var username = data.user.screen_name
+      
+      // check track
+      if(track && !options.track) {
+        if(!checkTrack(tweet, track)) {
+          return
+        }
+      }
+      
+      // check location
       if (lausanneGeoloc && !isInBounds(loc, data)) {
         return;
       }
       
-      var tweet = data.text
-      var username = data.user.screen_name
-      
-      printJSON(username, tweet)
+      printJSON(username, tweet, additionalTags)
     });
     
     stream.on('error', function (err) {
@@ -224,8 +255,10 @@ function boxIsSmall(box) {
   return (Math.abs(box[2]-box[0]) < limit && Math.abs(box[3]-box[1]) < limit)
 }
 
-function printJSON(username, tweet) {
+function printJSON(username, tweet, additionalTags) {
     var tags = ['Twitter', '@'+username]
+    tags = tags.concat(additionalTags)
+    
     var json = {
       title: '@'+username,
       text: tweet,
@@ -233,4 +266,33 @@ function printJSON(username, tweet) {
     }
     
     process.stdout.write(JSON.stringify(json) + '\n');
+}
+
+// Check if a tweet matches a track
+function checkTrack(tweet, track) {
+  var tracks = track.trim().split(/\s*[,;\/]\s*/)
+  
+  tracks = tracks.map(function (track) {
+    return track.trim().split(/\s+/)
+  })
+  
+  for(var i in tracks) {
+    var track = tracks[i]
+    
+    if(checkAnd(tweet, track)) {
+      return true
+    }
+  }
+  
+  return false
+}
+
+function checkAnd(tweet, track) {
+  for(var j in track) {
+    if(tweet.toLowerCase().indexOf(track[j].toLowerCase()) < 0) {
+      return false
+    }
+  }
+  
+  return true
 }
