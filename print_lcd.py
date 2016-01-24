@@ -3,16 +3,15 @@ from time import sleep
 import RPIO
 from RPLCD import CharLCD
 
-
 refresh_rate = 0.2 # seconds
-input_data = stdin.read()
+input_data = stdin.read().rstrip('\n')
 
 pins_out = [11, 13, 15, 16]
 pin_e = 8
 pin_rs = 10
 pin_rw = 3
-nb_columns=20
-nb_rows=4
+nb_columns=8
+nb_rows=2
 
 
 lcd = CharLCD(
@@ -26,14 +25,31 @@ lcd = CharLCD(
     dotsize=8
 )
 
+stop = False
 
-
-def each_cons(x, size):
-    return [x[i:i+size] for i in range(len(x)-size+1)]
-
-while True:
-    for x in each_cons(input_data, 20):
+def printToScreen(str):
+    if len(str) <= nb_columns * 2:
         lcd.clear()
         lcd.home()
-        lcd.write_string(' '.join(x.split()))
-        sleep(refresh_rate)
+        lcd.write_string(str[:nb_columns])
+        lcd.cursor_pos = (1, 0)
+        lcd.write_string(str[nb_columns:])
+    else:
+        pad = ' ' * nb_columns * 2
+        longStr = pad + str + pad
+        
+        while True:
+            for i in range(len(longStr)):
+                printToScreen(longStr[i:i + nb_columns * 2])
+                sleep(refresh_rate)
+
+
+print('printing...')
+
+printToScreen('Hello Fixme!')
+sleep(2)
+
+lcd.clear()
+sleep(0.5)
+
+printToScreen(input_data)
