@@ -4,9 +4,9 @@
   "description": "Fetch some tweets to feed the TOTEM",
   "main": "app.js",
   "dependencies": {
-    "geojson-utils": "~1.0.2",
-    "twitter": "~0.2.7",
-    "yargs": "~1.2.1"
+    "geojson-utils": "^1.0.2",
+    "twitter": "^0.2.13",
+    "yargs": "^1.2.6"
   },
   "devDependencies": {},
   "scripts": {

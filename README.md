@@ -3,11 +3,12 @@ totem
 
 Let's show some tweets on a tree in the hackerspace
 
+Installation
+------------
 
-RaspPi's config
----------------
-    user: pi
-    password: fixme
+- Install RPIO: https://pythonhosted.org/RPIO/#installation (you may need python-setuptools)
+- Install RPLCD: https://github.com/dbrgn/RPLCD#installing
+- Install RPi.GPIO: `pip install RPi.GPIO`
 
 
 JSON

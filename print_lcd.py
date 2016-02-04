@@ -8,8 +8,8 @@ input_data = stdin.read().rstrip('\n')
 
 pins_out = [11, 13, 15, 16]
 pin_e = 8
-pin_rs = 10
-pin_rw = 3
+pin_rs = 3
+pin_rw = 10
 nb_columns=8
 nb_rows=2
 
