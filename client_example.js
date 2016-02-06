@@ -11,7 +11,7 @@ const message = {
 
 const net = require('net');
 
-const client = net.connect({ port: 3000 }, () => {
+const client = net.connect({ port: 4000 }, () => {
 	console.log('connected to server!');
 	client.write(JSON.stringify(message));
 });
