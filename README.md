@@ -1,7 +1,7 @@
-totem
+Totem
 =====
 
-Let's show some tweets on a tree in the hackerspace
+Let's show messages in the Hackerspace!
 
 Installation
 ------------
@@ -16,12 +16,25 @@ JSON
 
 ### Required
 
-- **title** _String_ : Title
 - **text** _String_ : Text 
-- **tags** _Array_ : Tags corresponding to LCD screens
+- **tags** _Array_ : Tags corresponding to LCD screens. _Not working yet_.
 
 ### Optional
 
-- **priority** _Int_ :
-- **blink** _Boolean_ :
-- **duration** _Int_ : Duration in seconds
+- **title** _String_ : Title. _Not working yet_.
+- **priority** _Int_ : From 0 (lowest) to 5 (highest) (default: 0). _Not working yet_.
+- **blink** _Boolean_ : Make the screen blink on new messages (default: true). _Not working yet_.
+- **duration** _Int_ : Duration in seconds. (0 = Forever) (default: 0). _Not working yet_.
+
+### Example
+
+```json
+{
+	"title": "@Fixme",
+	"text": "The space is open! Feel free to come!",
+	"tags": [ '@Fixme', 'Twitter' ],
+	"priority": 2,
+	"blink": true,
+	"duration": 600
+}
+```
