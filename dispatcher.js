@@ -4,7 +4,7 @@
 {
 	"title": "@Fixme",
 	"text": "The space is open! Feel free to come!",
-	"tags": [ '@Fixme', 'Twitter' ],
+	"screens": [ 0, 2, 3 ],
 	"priority": 2,
 	"blink": true,
 	"duration": 600
@@ -22,7 +22,9 @@ var server = net.createServer((socket) => {
 			const msg = JSON.parse(data.toString());
 			console.dir(msg);
 
-			print(0, msg.text);
+			for (let screenId of msg.screens) {
+				print(screenId, msg.text);
+			}
 
 			socket.end('goodbye\n');
 		} catch (e) {

@@ -3,7 +3,7 @@
 const message = {
 	"title": "@Fixme",
 	"text": "The space is open! Feel free to come!",
-	"tags": [ '@Fixme', 'Twitter' ],
+	"screens": [ 0, 1, 2, 3 ],
 	"priority": 2,
 	"blink": true,
 	"duration": 600
