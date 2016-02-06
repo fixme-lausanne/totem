@@ -1,7 +1,44 @@
 "use strict";
 
+/*
+{
+	"title": "@Fixme",
+	"text": "The space is open! Feel free to come!",
+	"tags": [ '@Fixme', 'Twitter' ],
+	"priority": 2,
+	"blink": true,
+	"duration": 600
+}
+*/
+
+const port = process.argv[2] || 3000;
+
+const net = require('net');
 const spawn = require('child_process').spawn;
 
+var server = net.createServer((socket) => {
+	socket.on('data', (data) => {
+		try {
+			const msg = JSON.parse(data.toString());
+			console.dir(msg);
+
+			print(0, msg.text);
+
+			socket.end('goodbye\n');
+		} catch (e) {
+			console.warn('Bad data:', e)
+			socket.end('Don\'t send bad JSON: ' + e);
+		}
+	})
+});
+
+server.listen({
+	port: port
+}, () => {
+	console.log('Server started, listening on %j. You can change this port by specifing the 1 argument of this program.', server.address());
+});
+
+// Process Spawner
 const pythonProcesses = [];
 
 function print(screenId, string) {
@@ -28,6 +65,7 @@ function print(screenId, string) {
 }
 
 // Tests
+/*
 print(0, "Hello Fixme!");
 print(1, "Hoy mate?");
 
@@ -35,3 +73,4 @@ setTimeout(() => {
 	print(0, "Yo!");
 	print(2, "oh?");
 }, 3000)
+*/
