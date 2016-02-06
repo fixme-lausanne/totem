@@ -32,7 +32,7 @@ JSON
 {
 	"title": "@Fixme",
 	"text": "The space is open! Feel free to come!",
-	"tags": [ '@Fixme', 'Twitter' ],
+	"tags": [ "@Fixme", "Twitter" ],
 	"priority": 2,
 	"blink": true,
 	"duration": 600
