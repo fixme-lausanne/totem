@@ -6,10 +6,19 @@ Let's show messages in the Hackerspace!
 Installation
 ------------
 
+### print_lcd.py
+
 - Install RPIO: https://pythonhosted.org/RPIO/#installation (you may need python-setuptools)
 - Install RPLCD: https://github.com/dbrgn/RPLCD#installing
 - Install RPi.GPIO: `pip install RPi.GPIO`
 
+### Web Manager
+
+- https://www.meteor.com/install
+
+### Tweet-getter
+
+`npm install`
 
 JSON
 ----
