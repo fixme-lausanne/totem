@@ -1,4 +1,17 @@
 <template name="tagManager">
 	<h2>Tag Manager</h2>
-	
+
+	<div id="screens">
+		{{#each this}}
+			<div class="screen">
+				<h3 class="name">{{ name }}</h3>
+				{{#each tags}}
+					<div>{{ value }}</div>
+					<div>{{ priority }}</div>
+					<div>{{ duration }}</div>
+					<div>{{ blink }}</div>
+				{{/each}}
+			</div>
+		{{/each}}
+	</div>
 </template>

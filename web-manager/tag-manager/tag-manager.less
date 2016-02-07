@@ -1,0 +1,22 @@
+#screens {
+	position: relative;
+	border: 1px solid black;
+	height: 500px;
+
+	.screen {
+		float: left;
+		width: 25%;
+		padding: 10px;
+		height: 100%;
+
+		&:not(:last-child) {
+			border-right: 1px solid black;
+		}
+	}
+
+	&:after {
+		content: " ";
+		clear: both;
+		display: block;
+	}
+}

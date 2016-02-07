@@ -1,0 +1,14 @@
+/* Brownie */
+
+@font-face {
+	font-family: 'Brownie';
+	src: url('BROWNIEregular.otf') format('opentype');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Brownie';
+	src: url('BROWNIElight.otf') format('opentype');
+	font-weight: 300;
+	font-style: normal;
+}

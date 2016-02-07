@@ -2,12 +2,16 @@ Router.route('/', function () {
 	this.render('manualMode');
 });
 
-Router.route('/tags', function () {
-	this.render('tagManager');
+Router.route('/tags', {
+	name: 'tagManager',
+	template: 'tagManager',
+	data: function () {
+		return Screens.find();
+	}
 });
 
 Router.route('/processes', function () {
-	this.render('processes');
+	this.render('processManager');
 });
 
 Router.route('/manual', function () {
