@@ -6,10 +6,14 @@
 			<div class="screen">
 				<h3 class="name">{{ name }}</h3>
 				{{#each tags}}
-					<div>{{ value }}</div>
-					<div>{{ priority }}</div>
-					<div>{{ duration }}</div>
-					<div>{{ blink }}</div>
+					<div class="tag">
+						<div
+							class="name"
+							title="priority: {{#if priority}} {{ priority }} {{else}} default {{/if}} &middot; duration: {{#if duration}} {{ duration }}s {{else}} default {{/if}} &middot; blink: {{#if blink}} yes {{else}} no {{/if}}">
+							{{ value }}
+						</div>
+						<button class="remove btn-remove" data-value="{{ value }}" data-id="{{ ../_id }}"></button>
+					</div>
 				{{/each}}
 			</div>
 		{{/each}}

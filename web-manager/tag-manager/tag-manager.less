@@ -19,4 +19,24 @@
 		clear: both;
 		display: block;
 	}
+
+	.tag {
+		position: relative;
+		width: 100%;
+		padding-top: 5px;
+
+		.name {
+			float: left;
+		}
+
+		.remove {
+			float: right;
+		}
+
+		&:after {
+			content: " ";
+			clear: both;
+			display: block;
+		}
+	}
 }

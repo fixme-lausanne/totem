@@ -43,3 +43,21 @@ button, input, textarea {
 	padding: 10px 20px;
 	border: 1px solid black;
 }
+
+button {
+	cursor: pointer;
+}
+
+.btn-remove {
+	background-color: darkred;
+	color: white;
+	padding: 0;
+	line-height: 0;
+	width: 25px;
+	height: 25px;
+	font-size: 20px;
+
+	&:before {
+		content: "×";
+	}
+}
