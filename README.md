@@ -18,7 +18,7 @@ Installation
 
 ### Tweet-getter
 
-`npm install`
+`npm install -g`
 
 JSON
 ----

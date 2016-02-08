@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/fixme-lausanne/totem/issues"
   },
-  "homepage": "https://github.com/fixme-lausanne/totem"
+  "homepage": "https://github.com/fixme-lausanne/totem",
+  "bin": {
+    "tweet-getter": "./index.js"
+  }
 }
