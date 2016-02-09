@@ -8,5 +8,10 @@ Processes.attachSchema(new SimpleSchema({
 	"description" : {
 		type: String,
 		label: "Process description"
+	},
+	"enable": {
+		type: Boolean,
+		label: "Enable",
+		defaultValue: true
 	}
 }));

@@ -6,6 +6,10 @@ Screens.attachSchema(new SimpleSchema({
 		label: "Screen Name",
 		max: 100
 	},
+	"number" : {
+		type: Number,
+		label: "From 0"
+	},
 	"tags.$.value": {
 		type: String
 	},
