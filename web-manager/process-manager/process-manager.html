@@ -1,4 +1,13 @@
 <template name="processManager">
 	<h2>Process Manager</h2>
-	
+	<div class="processes">
+		{{#each this}}
+			<pre>{{ command }}</pre>
+			{{ description }}
+			{{ enable }}
+		{{/each}}
+	</div>
+
+	<h3>New Process</h3>
+	{{> quickForm collection="Processes" id="insertProcessForm" type="insert"}}
 </template>
