@@ -1,5 +1,8 @@
 if (Meteor.isServer) {
 	Meteor.methods({
+		emitMsg: function (msg) {
+			Meteor.call('emitJson', JSON.stringify(msg));
+		},
 		emitJson: function (json) {
 			"use strict";
 
