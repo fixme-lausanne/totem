@@ -10,8 +10,12 @@ Router.route('/tags', {
 	}
 });
 
-Router.route('/processes', function () {
-	this.render('processManager');
+Router.route('/processes', {
+	name: 'processManager',
+	template: 'processManager',
+	data: function () {
+		return Processes.find();
+	}
 });
 
 Router.route('/manual', function () {
