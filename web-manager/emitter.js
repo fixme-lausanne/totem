@@ -4,24 +4,25 @@ if (Meteor.isServer) {
 			Meteor.call('emitJson', JSON.stringify(msg));
 		},
 		emitJson: function (json) {
-			"use strict";
-
 			const net = Npm.require('net');
 
-			const client = net.connect({ port: 4000 }, () => {
-				console.log('connected to server!');
-				client.write(json);
-			});
+			try {
+				const client = net.connect({ port: DISPATCHER_PORT }, () => {
+					console.log('connected to server!');
+					client.write(json);
+				});
 
-			client.on('data', (data) => {
-				console.log(data.toString());
-				client.end();
-			});
+				client.on('data', (data) => {
+					console.log(data.toString());
+					client.end();
+				});
 
-			client.on('end', () => {
-				console.log('disconnected from server');
-			});
-
+				client.on('end', () => {
+					console.log('disconnected from server');
+				});
+			} catch (e) {
+				console.error(`Cannot connect to dispatcher on port ${DISPATCHER_PORT}`);
+			}
 		}
 	});
 }
