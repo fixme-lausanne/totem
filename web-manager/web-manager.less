@@ -64,16 +64,32 @@ button {
 	cursor: pointer;
 }
 
-.btn-remove {
-	background-color: darkred;
-	color: white;
+.btn-small {
 	padding: 0;
 	line-height: 0;
 	width: 25px;
 	height: 25px;
-	font-size: 20px;
+}
+
+.btn-remove {
+	background-color: darkred;
+	color: white;
+    padding-bottom: 5px;
+    font-size: 20px;
 
 	&:before {
 		content: "×";
+	}
+}
+
+.btn-add {
+	background-color: green;
+	color: white;
+	padding-bottom: 5px;
+	padding-top: 0;
+	font-size: 20px;
+
+	&:before {
+		content: "+";
 	}
 }

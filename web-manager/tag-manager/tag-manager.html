@@ -5,16 +5,22 @@
 		{{#each this}}
 			<div class="screen">
 				<h3 class="name">{{ name }}</h3>
-				{{#each tags}}
-					<div class="tag">
-						<div
-							class="name"
-							title="priority: {{#if priority}} {{ priority }} {{else}} default {{/if}} &middot; duration: {{#if duration}} {{ duration }}s {{else}} default {{/if}} &middot; blink: {{#if blink}} yes {{else}} no {{/if}}">
-							{{ value }}
+				<div class="tags">
+					{{#each tags}}
+						<div class="tag">
+							<div
+								class="name"
+								title="priority: {{#if priority}} {{ priority }} {{else}} default {{/if}} &middot; duration: {{#if duration}} {{ duration }}s {{else}} default {{/if}} &middot; blink: {{#if blink}} yes {{else}} no {{/if}}">
+								{{ value }}
+							</div>
+							<button class="remove btn-remove btn-small" data-value="{{ value }}" data-id="{{ ../_id }}"></button>
 						</div>
-						<button class="remove btn-remove" data-value="{{ value }}" data-id="{{ ../_id }}"></button>
-					</div>
-				{{/each}}
+					{{/each}}
+				</div>
+				<div class="bottom">
+					<input type="text" placeholder="Tag" class="new-tag-{{ _id }}">
+					<button class="add btn-add" data-id="{{ _id }}"></button>
+				</div>
 			</div>
 		{{/each}}
 	</div>

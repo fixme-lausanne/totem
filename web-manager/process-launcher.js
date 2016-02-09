@@ -24,14 +24,6 @@ if (Meteor.isServer) {
 						const msg = JSON.parse(data.toString());
 						console.dir(msg);
 
-						/*Meteor.bindEnvironment(function () {
-							msg.screens = Screens.find({ tags: { $in: ["appliances", "school"] } }, { number: 1 }).map(screen => screen.number);
-
-							console.dir(msg.screens);
-
-							// emitMsg(msg);
-						});*/
-
 						var Fiber = Npm.require('fibers');
 
 						Fiber(function() {
