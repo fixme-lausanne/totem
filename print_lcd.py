@@ -51,10 +51,6 @@ def printToScreen(str):
 
 print('printing...')
 
-printToScreen('Hello Fixme!')
-sleep(2)
-
 lcd.clear()
-sleep(0.5)
 
 printToScreen(input_data)
