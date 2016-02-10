@@ -49,8 +49,8 @@ function print(screenId, string) {
 		pythonProcesses[screenId].kill('SIGHUP'); // TODO nice sync with the `proc.on('close')`
 	}
 
-	// let proc = spawn('python', ['print_lcd.py', screenId, string]);
-	let proc = spawn('node', ['print_lcd_test.js', screenId, string]);
+	let proc = spawn('python', ['print_lcd.py', screenId, string]);
+	// let proc = spawn('node', ['print_lcd_test.js', screenId, string]); // For testing purpose only
 	pythonProcesses[screenId] = proc;
 
 	proc.stdout.on('data', (data) => {
