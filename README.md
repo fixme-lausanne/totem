@@ -46,3 +46,10 @@ JSON
 	"duration": 600
 }
 ```
+
+How does it works?
+------------------
+
+### Diagram
+
+![Totem Diagram](/doc/totem-diagram.png)
