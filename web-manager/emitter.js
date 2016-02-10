@@ -7,7 +7,7 @@ if (Meteor.isServer) {
 			const net = Npm.require('net');
 
 			try {
-				const client = net.connect({ port: DISPATCHER_PORT }, () => {
+				const client = net.connect({ host: DISPATCHER_ADDRESS, port: DISPATCHER_PORT }, () => {
 					console.log('connected to server!');
 					client.write(json);
 				});
