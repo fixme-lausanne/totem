@@ -1,18 +1,23 @@
 from sys import stdin
 from time import sleep
+from sys import argv
+
 import RPIO
 from RPLCD import CharLCD
 
 refresh_rate = 0.2 # seconds
-input_data = stdin.read().rstrip('\n')
+
+screen = int(argv[1])
+input_data = argv[2].rstrip('\n')
+
+pins_e = [19, 5, 7, 8]
 
 pins_out = [11, 13, 15, 16]
-pin_e = 8
+pin_e = pins_e[screen]
 pin_rs = 3
 pin_rw = 10
 nb_columns=8
 nb_rows=2
-
 
 lcd = CharLCD(
     pin_rs=pin_rs,
