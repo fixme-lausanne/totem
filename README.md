@@ -20,8 +20,41 @@ Installation
 
 `npm install -g`
 
-JSON
-----
+How to Run
+----------
+
+First, start the dispatcher with: `node dispatcher.js`
+And then, start the Web Manager with: `cd web-manager` and `meteor`
+
+JSON for the Web Manager
+------------------------
+
+### Required
+
+- **text** _String_ : Text 
+- **tags** _Array_ : Tags that will be handle, filter, dispatch by the Web Manager.
+
+### Optional
+
+- **priority** _Int_ : From 0 (lowest) to 5 (highest) (default: 0). _Not working yet_.
+- **blink** _Boolean_ : Make the screen blink on new messages (default: true). _Not working yet_.
+- **duration** _Int_ : Duration in seconds. (0 = Forever) (default: 0). _Not working yet_.
+
+### Example
+
+```json
+{
+	"title": "@_fixme",
+	"text": "The space is open! Feel free to come!",
+	"tags": [ "Twitter", "@_fixme" ],
+	"priority": 2,
+	"blink": true,
+	"duration": 600
+}
+```
+
+JSON for the Dispatcher
+-----------------------
 
 ### Required
 
@@ -38,7 +71,7 @@ JSON
 
 ```json
 {
-	"title": "@Fixme",
+	"title": "@_fixme",
 	"text": "The space is open! Feel free to come!",
 	"screens": [ 0, 2, 3 ],
 	"priority": 2,
