@@ -8,7 +8,7 @@ Installation
 
 ### print_lcd.py
 
-- Install RPIO: https://pythonhosted.org/RPIO/#installation (you may need python-setuptools)
+- Install RPIO: https://pythonhosted.org/RPIO/#installation (the github method seems to work better. You may need python-setuptools)
 - Install RPLCD: https://github.com/dbrgn/RPLCD#installing
 - Install RPi.GPIO: `pip install RPi.GPIO`
 
@@ -23,8 +23,10 @@ Installation
 How to Run
 ----------
 
-First, start the dispatcher with: `node dispatcher.js`
-And then, start the Web Manager with: `cd web-manager` and `meteor`
+First, start the dispatcher with: `node dispatcher.js`.  
+And then, start the Web Manager with: `cd web-manager` and `meteor`.
+
+_Note: you may need to change the IP address of the dispatcher in Web Manager global file: `web-manager/00_globals.js`_
 
 JSON for the Web Manager
 ------------------------
