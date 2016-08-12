@@ -41,7 +41,7 @@ nb_rows = 2
 lcds = []
 
 for i in range(0, 4):
-    lcds.insert(CharLCD(
+    lcds.append(CharLCD(
         pin_rs = pin_rs,
         pin_e = pins_e[i],
         pin_rw = pin_rw,
