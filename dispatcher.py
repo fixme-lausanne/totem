@@ -141,9 +141,11 @@ def updateRefreshRate():
 
     # Tweeking to make it looks better
     if (nb_long_text == 1):
-        nb_long_text = 2
-
-    refresh_rate = (4 - nb_long_text) * 0.05
+        refresh_rate = 0.2
+    elif (nb_long_text == 2):
+        refresh_rate = 0.1
+    else:
+        refresh_rate = 0
 
 serverThread = Thread(target=runServer)
 serverThread.start()
