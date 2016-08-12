@@ -11,9 +11,9 @@ HOST = ''
 if len(sys.argv) > 1:
     PORT = int(sys.argv[1])
 else:
-    PORT = 4000 
+    PORT = 4000
 
-REFRESH_RATE = 0.15 # seconds
+refresh_rate = 0.05
 NB_COLUMNS = 8
 
 screensMutex = Lock()
@@ -83,6 +83,7 @@ class TCPHandler(socketserver.BaseRequestHandler):
             setScreen(screenId, data)
 
         print("Update!")
+        updateRefreshRate()
 
         self.request.sendall('goodby\n'.encode('utf-8'))
 
@@ -105,7 +106,7 @@ def write():
         if (offset_texts[i] > len(str) + len(separator) - 1):
             offset_texts[i] = 0
     while 1:
-        sleep(REFRESH_RATE)
+        sleep(refresh_rate)
         screens = getScreens()
         for i, screen in enumerate(screens):
             # On new text
@@ -130,6 +131,14 @@ def printOnLCD(str, i):
     lcd.write_string(str[:NB_COLUMNS])
     lcd.cursor_pos = (1, 0)
     lcd.write_string(str[NB_COLUMNS:])
+
+def updateRefreshRate():
+    nb_long_text = 0
+    screens = getScreens()
+    for screen in screens:
+        if (len(screen['text']) > NB_COLUMNS * 2):
+            nb_long_text += 1
+    refresh_rate = (4 - nb_long_text) * 0.05 # 0.15 seconds for 1 screen
 
 serverThread = Thread(target=runServer)
 serverThread.start()
