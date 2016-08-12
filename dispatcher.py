@@ -38,6 +38,8 @@ pin_rw = 10
 nb_columns = 8
 nb_rows = 2
 
+lcds = []
+
 for i in range(0, 4):
     lcds.insert(CharLCD(
         pin_rs = pin_rs,
