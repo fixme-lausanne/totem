@@ -133,19 +133,13 @@ def printOnLCD(str, i):
     lcd.write_string(str[NB_COLUMNS:])
 
 def updateRefreshRate():
+    global refresh_rate
     nb_long_text = 0
     screens = getScreens()
     for screen in screens:
         if (len(screen['text']) > NB_COLUMNS * 2):
             nb_long_text += 1
-
-    # Tweeking to make it looks better
-    if (nb_long_text == 1):
-        refresh_rate = 0.2
-    elif (nb_long_text == 2):
-        refresh_rate = 0.1
-    else:
-        refresh_rate = 0
+    refresh_rate = (4 - nb_long_text) * 0.05 # 0.15 seconds for 1 screen
 
 serverThread = Thread(target=runServer)
 serverThread.start()
