@@ -6,7 +6,7 @@ Router.route('/tags', {
 	name: 'tagManager',
 	template: 'tagManager',
 	data: function () {
-		return Screens.find();
+		return Screens.find({}, { sort: { number: 1 } });
 	}
 });
 
