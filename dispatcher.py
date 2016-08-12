@@ -138,7 +138,12 @@ def updateRefreshRate():
     for screen in screens:
         if (len(screen['text']) > NB_COLUMNS * 2):
             nb_long_text += 1
-    refresh_rate = (4 - nb_long_text) * 0.05 # 0.15 seconds for 1 screen
+
+    # Tweeking to make it looks better
+    if (nb_long_text == 1):
+        nb_long_text = 2
+
+    refresh_rate = (4 - nb_long_text) * 0.05
 
 serverThread = Thread(target=runServer)
 serverThread.start()
