@@ -18,6 +18,7 @@ Router.route('/processes', {
 	}
 });
 
-Router.route('/manual', function () {
-	this.render('manualMode');
+Router.route('/manual', {
+	name: 'manualMode',
+	template: 'manualMode'
 });
