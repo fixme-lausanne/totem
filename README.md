@@ -28,6 +28,24 @@ And then, start the Web Manager with: `cd web-manager` and `meteor`.
 
 _Note: you may need to change the IP address of the dispatcher in Web Manager global file: `web-manager/00_globals.js`_
 
+Service
+-------
+
+Here is an example of service file if you run systemd.
+
+```service
+[Unit]
+Description=Launch Totem Dispatcher for Raspberry Pi
+After=syslog.target network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/totem/dispatcher.py
+
+[Install]
+WantedBy=default.target
+```
+
 JSON for the Web Manager
 ------------------------
 
