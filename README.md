@@ -23,7 +23,7 @@ Installation
 How to Run
 ----------
 
-First, start the dispatcher with: `node dispatcher.js`.  
+First, start the dispatcher with: `python /root/totem/dispatcher.py` (we don't live in the past so it's python 3).  
 And then, start the Web Manager with: `cd web-manager` and `meteor`.
 
 _Note: you may need to change the IP address of the dispatcher in Web Manager global file: `web-manager/00_globals.js`_
