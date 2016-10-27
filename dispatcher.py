@@ -31,10 +31,10 @@ current_texts = ['', '', '', '']
 offset_texts = [0, 0, 0, 0]
 
 pins_e = [19, 5, 7, 8]
-
 pins_out = [11, 13, 15, 16]
 pin_rs = 3
 pin_rw = 10
+# pins_backlight = [22, 24, 21, 23]
 nb_columns = 8
 nb_rows = 2
 
