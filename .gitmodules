@@ -1,3 +1,6 @@
 [submodule "totem-tweet-getter"]
 	path = totem-tweet-getter
 	url = git@github.com:BinaryBrain/totem-tweet-getter.git
+[submodule "totem-mpd-current-song"]
+	path = totem-mpd-current-song
+	url = git@github.com:BinaryBrain/totem-mpd-current-song.git
