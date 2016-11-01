@@ -1,0 +1,12 @@
+dashboard:
+  image: fixme-lausanne/totem
+  ports:
+   - "80:3000"
+  links:
+   - mongo
+  environment:
+   - MONGO_URL=mongodb://mongo/meteor
+   - ROOT_URL=http://yourapp.com
+
+mongo:
+  image: mongo:latest
