@@ -8,7 +8,7 @@ Installation
 
 ### print_lcd.py
 
-- Install RPIO: https://pythonhosted.org/RPIO/#installation (the github method seems to work better. You may need python-setuptools)
+- Install RPIO: https://pythonhosted.org/RPIO/#installation (the GitHub method seems to work better. You may need python-setuptools)
 - Install RPLCD: https://github.com/dbrgn/RPLCD#installing
 - Install RPi.GPIO: `pip install RPi.GPIO`
 
