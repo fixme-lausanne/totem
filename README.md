@@ -14,11 +14,7 @@ Installation
 
 ### Web Manager
 
-- https://www.meteor.com/install
-
-### Tweet-getter
-
-`npm install -g`
+See [Web Manager README](/web-manager/README.md)
 
 How to Run
 ----------
