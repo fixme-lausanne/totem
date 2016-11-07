@@ -6,7 +6,7 @@ Let's show messages in the Hackerspace!
 Installation
 ------------
 
-### print_lcd.py
+### dispatcher.py
 
 - Install RPIO: https://pythonhosted.org/RPIO/#installation (the GitHub method seems to work better. You may need python-setuptools)
 - Install RPLCD: https://github.com/dbrgn/RPLCD#installing
@@ -27,7 +27,7 @@ _Note: you may need to change the IP address of the dispatcher in Web Manager gl
 Service
 -------
 
-Here is an example of service file if you run systemd.
+Here is an example of service file for the dispatcher if you run systemd.
 
 ```service
 [Unit]
