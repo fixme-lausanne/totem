@@ -15,3 +15,9 @@ Processes.attachSchema(new SimpleSchema({
 		defaultValue: true
 	}
 }));
+
+Processes.after.insert(function (userId, doc) {
+	console.log(userId);
+	console.log(doc);
+	Meteor.call("launchProcess", doc._id, doc.command)
+});

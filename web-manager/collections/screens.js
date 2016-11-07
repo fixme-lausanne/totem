@@ -26,3 +26,16 @@ Screens.attachSchema(new SimpleSchema({
 		optional: true
 	}
 }));
+
+// Create screens if there is none
+if (Meteor.isServer) {
+	if (Screens.find().count() === 0) {
+		for (let i = 0; i < 4; i++) {
+			Screens.insert({
+				name: 'Screen ' + (i + 1),
+				tags: [],
+				number: i + 1
+			})
+		}
+	}
+}

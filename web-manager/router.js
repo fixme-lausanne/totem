@@ -1,5 +1,5 @@
 Router.route('/', function () {
-	this.render('tagManager');
+	this.redirect('/tags');
 });
 
 Router.route('/tags', {
